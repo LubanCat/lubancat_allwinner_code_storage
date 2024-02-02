@@ -8,10 +8,10 @@
 #include <stdint.h>
 #include <linux/spi/spidev.h>
 
-#define SPI_DEV_PATH "/dev/spidev3.0"
+#define SPI_DEV_PATH "/dev/spidev1.0"
 
 /*SPI 接收 、发送 缓冲区*/
-unsigned char tx_buffer[100] = "hello the world !";
+unsigned char tx_buffer[100] = "hello lubancat !";
 unsigned char rx_buffer[100];
 
 
