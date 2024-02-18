@@ -5,7 +5,7 @@ period=1000000 #PWM周期
 cpu_temp1=65 #节点1
 cpu_temp1_pwm=50 #节点1占空比,%
 cpu_temp2=75 #节点2
-cpu_temp2_pwm=75  #节点2占空比,%
+cpu_temp2_pwm=80  #节点2占空比,%
 cpu_temp3=85 #节点3
 cpu_temp3_pwm=100 #节点3占空比,%
 
@@ -38,10 +38,10 @@ while true; do
          cpu_pwm3=$(( ( (cpu_temp3_pwm-cpu_temp2_pwm)*(temp-cpu_temp2)/(cpu_temp3-cpu_temp2)+cpu_temp2_pwm)*period/100 ))
          echo $cpu_pwm3 > /sys/class/pwm/pwmchip0/pwm1/duty_cycle
          # echo "CPU Temp: ${temp}℃ CPU PWM3: ${cpu_pwm3}"
-      else 
+      elif ((temp > cpu_temp3)); then
          cpu_pwm_end=$(( cpu_temp3_pwm*period/100 ))
          echo $cpu_pwm_end > /sys/class/pwm/pwmchip0/pwm1/duty_cycle
-         # echo "CPU Temp: ${temp}℃ CPU PWM3: ${cpu_pwm_end}"
+         # echo "CPU Temp: ${temp}℃ CPU PWM_END: ${cpu_pwm_end}"
       fi
 
    else
