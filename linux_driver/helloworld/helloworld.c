@@ -5,14 +5,15 @@
 static int hello_init(void)
 {
     //内核层只能使用printk，不能使用printf，因为内核层不支持C语言
-    printk(KERN_EMERG "[ KERN_EMERG ]  Hello  Module Init\n");
-    printk( "[ default ]  Hello  Module Init\n");
+    printk(KERN_EMERG "[ KERN_EMERG ]  Hello  World Init\n"); //输出等级为0
+    printk("[ default ]  Hello  World Init\n");
     return 0;
 }
 
 //出口函数功能实现
 static void hello_exit(void)
 {
+    printk(KERN_EMERG "[ KERN_EMERG ]  Hello  World Exit\n"); //输出等级为0
     printk("[ default ]   Hello  World Exit\n");
 }
 
