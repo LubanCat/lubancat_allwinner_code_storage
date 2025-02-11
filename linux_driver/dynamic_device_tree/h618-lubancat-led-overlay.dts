@@ -1,0 +1,22 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    fragment@0 {
+            target-path = "/";
+
+            __overlay__ {
+            /*添加led_test节点,*/
+            led_test{
+                #address-cells = <1>;
+                #size-cells = <0>;
+                compatible = "fire,led_test";
+                
+                led@0x0300b000{   //GPIO(PC,PF,PG,PH,PI)寄存器基地址
+                    reg = <0x0300b000>;
+                    status = "okay";
+                };
+            };
+        };
+    };
+};
