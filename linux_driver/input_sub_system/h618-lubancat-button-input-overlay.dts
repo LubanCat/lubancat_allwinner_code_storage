@@ -1,0 +1,21 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/gpio/sun4i-gpio.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/ {
+    fragment@0 {
+        target-path = "/";
+        __overlay__ {
+            input_button: input_button  {
+                status = "okay";
+                compatible = "input_button";
+                interrupt-parent = <&pio>;
+                interrupts = <PH 9 IRQ_TYPE_EDGE_BOTH>;
+                button-gpios = <&pio PH 9 GPIO_ACTIVE_HIGH>;
+            };
+        };
+    };
+};
