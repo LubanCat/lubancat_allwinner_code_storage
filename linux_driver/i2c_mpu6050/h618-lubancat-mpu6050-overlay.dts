@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    fragment@0 {
+        target = <&twi4>;
+        __overlay__ {
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            mpu6050@68 {
+                compatible = "fire,i2c_mpu6050";
+                //compatible = "invensense,mpu6050"
+                reg = <0x68>;
+                status = "okay";  
+            };
+        };
+    };
+};
