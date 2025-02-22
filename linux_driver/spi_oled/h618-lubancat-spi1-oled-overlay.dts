@@ -1,0 +1,30 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/gpio/sun4i-gpio.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/ {
+    fragment@0 {
+        target = <&spi1>;
+        __overlay__ {
+            spi_slave_mode = <0>;
+            pinctrl-names = "default", "sleep";
+            pinctrl-0 = <&spi1_pins_a &spi1_pins_b>;
+            pinctrl-1 = <&spi1_pins_c>;
+            spi1_cs_number = <1>; //控制器cs脚数量
+            spi1_cs_bitmap = <1>; // cs0‑ 0x1; cs1‑0x2, cs0&cs1‑0x3.
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            spi_oled@0 {
+                compatible = "fire,spi_oled";
+                reg = <0>;
+                spi-max-frequency = <24000000>; //spi output clock
+                dc_control_pin = <&pio PC 7 GPIO_ACTIVE_HIGH>;
+            };
+        };
+    };
+};
